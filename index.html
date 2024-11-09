@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation de Jets Privés</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+</head>
+
+<body>
+    <script src="script.js"></script> 
+    <!-- Section d'accueil avec l'image de fond et le menu superposé -->
+    <section class="hero-section">
+        <header class="main-header">
+            <div class="header-container">
+                <h1 class="logo">JetPrivé</h1>
+                <nav class="navigation">
+                    <ul>
+                        <li><a href="#fleet">Fleet</a></li>
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Formulaire de réservation -->
+        <div class="reservation">
+            <h2>Planifiez votre voyage</h2>
+            <form id="reservation-form">
+                <label for="departure">Départ</label>
+                <input type="text" id="departure" name="departure" placeholder="Point de départ" oninput="fetchAirports('departure')" autocomplete="off" required>
+                <div id="departure-suggestions" class="suggestions-list"></div>
+
+                <label for="destination">Destination</label>
+                <input type="text" id="destination" name="destination" placeholder="Destination" oninput="fetchAirports('destination')" autocomplete="off" required>
+                <div id="destination-suggestions" class="suggestions-list"></div>
+
+
+                <label for="aircraft">Choisissez votre avion</label>
+        <select id="aircraft" name="aircraft" required>
+            <option value="" disabled selected>Choisir un avion</option>
+            <option value="jet_privé_1">Jet Privé 1</option>
+            <option value="jet_privé_2">Jet Privé 2</option>
+            <option value="jet_vip">Jet VIP</option>
+            <option value="jet_moyen_courrier">Jet Moyen-Courrier</option>
+            <option value="jet_long_courrier">Jet Long-Courrier</option>
+        </select>
+
+                <label for="passenger-count">Nombre de passagers</label>
+                <div class="passenger-counter">
+                    <button type="button" id="decrement-passenger">-</button>
+                    <input type="text" id="passenger-count" name="passenger-count" value="1" readonly>
+                    <button type="button" id="increment-passenger">+</button>
+                </div>
+
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" required>
+                <button type="button" onclick="envoyerMail(event)">Trouver un vol</button>
+                <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+                <script>
+                    // Initialiser EmailJS avec la Public Key
+                    (function(){
+                        emailjs.init("8toKLk5w89_ODKMwU"); // Remplace par ta Public Key
+                    })();
+                </script>
+            </form>
+        </div>
+    </section>
+    
+
+    <!-- Section Avantages -->
+    <section class="advantages">
+        <h2>Nos Avantages</h2>
+        <div class="advantages-container">
+            <div class="advantage">
+                <img src="image/icon-luxe.png" alt="Icône Luxe" class="advantage-icon">
+                <h3>Luxe</h3>
+                <p>Une expérience de vol inégalée, avec des équipements haut de gamme et un confort exceptionnel.</p>
+            </div>
+            <div class="advantage">
+                <img src="image/icon-rapidite.png" alt="Icône Rapidité" class="advantage-icon">
+                <h3>Rapidité</h3>
+                <p>Des temps de vol optimisés et des départs flexibles pour s'adapter à vos horaires.</p>
+            </div>
+            <div class="advantage">
+                <img src="image/icon-securite.png" alt="Icône Sécurité" class="advantage-icon">
+                <h3>Sécurité</h3>
+                <p>Des standards de sécurité les plus élevés pour une tranquillité d'esprit totale.</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <!-- Section Témoignages -->
+    <section class="testimonials">
+        <h2>Ce que disent nos clients</h2>
+        <div class="testimonials-container">
+            <div class="testimonial">
+                <p>“Un service exceptionnel du début à la fin. Voler avec cette compagnie est un vrai plaisir, et le confort est inégalé.”</p>
+                <h3>Jean Dupont</h3>
+                <span>Client régulier</span>
+            </div>
+            <div class="testimonial">
+                <p>“Professionnalisme, ponctualité et confort. Je recommande vivement pour les voyages d'affaires.”</p>
+                <h3>Marie Leroy</h3>
+                <span>Directrice d'entreprise</span>
+            </div>
+            <div class="testimonial">
+                <p>“Une expérience de luxe avec une équipe attentive et professionnelle. Je ne volerai plus jamais autrement !”</p>
+                <h3>Laurent Petit</h3>
+                <span>Client satisfait</span>
+            </div>
+        </div>
+    </section>
+    <!-- Section Nos Services -->
+    <section class="services">
+        <h2>Nos Services</h2>
+        <div class="services-container">
+            <div class="service">
+                <img src="image/icon-business.png" alt="Icône Transports d'affaires" class="service-icon">
+                <h3>Transports d'affaires</h3>
+                <p>Voyagez en toute sérénité et confidentialité pour vos déplacements professionnels, avec des horaires flexibles.</p>
+            </div>
+            <div class="service">
+                <img src="image/icon-vacation.png" alt="Icône Vols privés pour vacances" class="service-icon">
+                <h3>Vols privés pour vacances</h3>
+                <p>Profitez de vols privés pour des vacances sans souci et sur mesure, avec un confort inégalé.</p>
+            </div>
+            <div class="service">
+                <img src="image/icon-medical.png" alt="Icône Vols médicalisés" class="service-icon">
+                <h3>Vols médicalisés</h3>
+                <p>Des vols sécurisés et adaptés aux besoins médicaux pour un transport en toute sécurité et confort.</p>
+            </div>
+            <div class="service">
+                <img src="image/icon-pet.png" alt="Icône Transport d'animaux" class="service-icon">
+                <h3>Transport d'animaux</h3>
+                <p>Nous assurons des conditions optimales pour le transport de vos animaux de compagnie.</p>
+            </div>
+        </div>
+    </section>
+    
+    
+
+</body>
+</html>
